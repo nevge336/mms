@@ -14,7 +14,7 @@
             <a href="{{ route('students.index')}}" class="btn btn-outline-primary">Retourner</a>
             <div class="card-header display-6">
                 <h4 class="display-6 mt-5">
-                    {{ $student->name }}
+                    {{ $student->user->name }}
                 </h4>
                 <hr>
             </div>
@@ -25,7 +25,7 @@
                 <strong>Téléphone:</strong> {{ $student->phone }}
             </p>
             <p>
-                <strong>Courriel:</strong> {{ $student->email }}
+                <strong>Courriel:</strong> {{ $student->user->email }}
             </p>
             <p>
                 <strong>Date de naissance:</strong> {{ $student->birthday }}

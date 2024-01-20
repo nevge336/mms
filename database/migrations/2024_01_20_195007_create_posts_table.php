@@ -9,25 +9,27 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+
+
     public function up(): void
     {
-        Schema::create('students', function (Blueprint $table) {
+        Schema::create('blog_posts', function (Blueprint $table) {
             $table->id();
-            $table->string('address', 150);
-            $table->string('phone', 20);
-            $table->date('birthday');
-            $table->foreignId('city_id')->constrained();
+            $table->string('title', 100)->nullable(false);
+            $table->text('title_fr')->nullable();
+            $table->text('content')->nullable(false);
+            $table->text('content_fr')->nullable();
+            $table->date('date');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('students');
+        Schema::dropIfExists('blog_posts');
     }
 };

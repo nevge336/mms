@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\City;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -18,7 +20,7 @@ class CustomAuthController extends Controller
 
         if (Auth::check()) {
             // The user is logged in, redirect them to the dashboard
-            return redirect()->route('dashboard');
+            return redirect()->route(('students.index'));
         }
         // The user is not logged in, show the login page
         return view('auth.login');
@@ -30,26 +32,34 @@ class CustomAuthController extends Controller
      */
     public function create()
     {
-        return view('auth.create');
+        $cities = City::all(); // Fetch all cities from your database. Replace 'City' with your actual model name.
+
+        return view('auth.create', compact('cities')); // Pass the $cities variable to the view.
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'min:2 | max:45',
+            'name' => 'min:2|max:45',
             'email' => 'email|required|unique:users',
             'password' => 'min:6|max:20',
+            'address' => 'required|max:150',
+            'phone' => 'required|max:20',
+            'birthday' => 'required|date',
+            'city_id' => 'required|exists:cities,id'
         ]);
 
         $user = new User;
-        $user->fill($request->all());
+        $user->fill($request->only('name', 'email'));
         $user->password = Hash::make($request->password);
         $user->save();
 
-        return redirect(route('login'))->withSuccess('Utilisateur enregistré!');
+        $studentData = $request->only('address', 'phone', 'birthday', 'city_id');
+        $studentData['user_id'] = $user->id; // Assuming there's a user_id field in the students table
+
+        $newStudent = Student::create($studentData);
+
+        return redirect(route('login'))->withSuccess('Utilisateur et profil étudiant enregistrés!');
     }
 
     public function authentication(Request $request)
@@ -87,6 +97,6 @@ class CustomAuthController extends Controller
             $name = Auth::user()->name;
         endif;
 
-        return view('forum.dashboard', compact('name'));
+        return view('dashboard', compact('name'));
     }
 }

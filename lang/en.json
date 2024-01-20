@@ -13,5 +13,7 @@
     "dashboard": "Dashboard",
     "search": "search",
     "students": "Students",
-    "list": "List"
+    "list": "List",
+    "no_student_registered": "No student registered",
+    "no_post_written": "No post written yet!"
 }

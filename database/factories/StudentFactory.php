@@ -23,12 +23,11 @@ class StudentFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
             'address' => $this->faker->address,
             'phone' => $this->faker->phoneNumber,
-            'email' => $this->faker->unique()->safeEmail,
             'birthday' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
             'city_id' => DB::table('cities')->inRandomOrder()->first()->id,
+            'user_id' => DB::table('users')->inRandomOrder()->first()->id,
         ];
     }
 }

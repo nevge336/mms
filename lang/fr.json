@@ -13,5 +13,6 @@
     "dashboard": "Tableau de bord",
     "search": "rechercher",
     "students": "Étudiant.e.s",
-    "list": "Liste"
+    "list": "Liste",
+    "no_student_registered": "Aucun étudiant n'est enregistré"
 }

@@ -17,14 +17,20 @@ class StudentController extends Controller
         $search = $request->get('search');
 
         if ($search) {
-            $students = Student::where('name', 'like', '%' . $search . '%')->orderBy('name')->paginate(15);
+            $students = Student::join('users', 'students.user_id', '=', 'users.id')
+                ->where('users.name', 'LIKE', '%' . $search . '%')
+                ->select('students.*') // Avoid getting non-student fields due to join
+                ->orderBy('users.name')
+                ->paginate(15);
         } else {
-            $students = Student::orderBy('name')->paginate(15);
+            $students = Student::join('users', 'students.user_id', '=', 'users.id')
+                ->select('students.*') // Avoid getting non-student fields due to join
+                ->orderBy('users.name')
+                ->paginate(15);
         }
 
         return view('students.index', compact('students'));
     }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -37,10 +43,8 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|max:55',
             'address' => 'required|max:150',
             'phone' => 'required|max:20',
-            'email' => 'required|email|unique:students,email',
             'birthday' => 'required|date',
             'city_id' => 'required|exists:cities,id'
         ]);
@@ -48,7 +52,7 @@ class StudentController extends Controller
         $newStudent = Student::create($validatedData);
 
         return redirect()->route('students.index')->withSuccess('Profil étudiant créé avec succès!');
-    }    
+    }
     /**
      * Display the specified resource.
      */

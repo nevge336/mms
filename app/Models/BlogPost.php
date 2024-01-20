@@ -5,24 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Student extends Model
+class BlogPost extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'address',
-        'phone',
-        'birthday',
-        'city_id',
+        'title',
+        'title_fr',
+        'content',
+        'content_fr',
+        'date',
         'user_id'
     ];
 
-    public function city()
-    {
-        return $this->belongsTo(City::class);
-    }
-
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo('App\Models\User');
     }
 }

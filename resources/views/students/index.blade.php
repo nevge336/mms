@@ -36,13 +36,13 @@
                         @forelse($students as $student)
                         <div class="col-lg-4 col-md-6 col-sm-12">
                             <ul>
-                                <li><a href="{{ route('students.show', $student->id)}}">{{ $student->name }}</a></li>
+                                <li><a href="{{ route('students.show', $student->id)}}">{{ $student->user->name }}</a></li>
                             </ul>
                         </div>
                         @empty
                         <div class="col-12">
                             <ul>
-                                <li class="text-danger">Aucun étudiant n'est inscrit !</li>
+                                <li class="text-danger">@lang('no_student_registered')</li>
                             </ul>
                         </div>
                         @endforelse
