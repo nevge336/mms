@@ -1,0 +1,17 @@
+{
+    "text_hello": "Salut",
+    "text_registration": "Inscription",
+    "register_user": "Devient membre",
+    "name": "Nom",
+    "username": "Nom utilisateur",
+    "password": "Mot de passe",
+    "add": "Ajouter",
+    "success_blog": "Blog added successfully",
+    "submit": "Soumettre",
+    "registration_question": "Déjà membre?",
+    "login_question": "Pas encore membre?",
+    "dashboard": "Tableau de bord",
+    "search": "rechercher",
+    "students": "Étudiant.e.s",
+    "list": "Liste"
+}

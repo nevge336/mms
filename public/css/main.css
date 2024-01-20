@@ -1,17 +1,44 @@
 /*Mettre la classe dans picture et l'image s'ajuste à son parent*/
 
-.image-hero {
-    position: relative;
-    display: flex;
+@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Source+Sans+3&display=swap');.image-hero {
     height: 100vh;
 }
 
+
 .image-hero > img {
-    /* position: absolute; */
-	inset: 0;
-	width: 100%;
-    height: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: right;
 }
 
+.font-bruno {
+    font-family: 'Bruno Ace SC', sans-serif;
+}
+
+.font-source {
+    font-family: 'Source Sans', sans-serif;
+}
+
+.font-montserrat {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.font-poppins {
+    font-family: 'Poppins', sans-serif;
+}
+
+.z-index-1 {
+    z-index: 1;
+}
+
+.thick-line {
+    border-top: 4px solid white;
+}
+
+.btn-yellow {
+    background-color: #ec9d14;
+    color: black;
+}
+.btn-yellow:hover {
+    background-color: #ec9d1492;
+    color: black;
+}

@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\CustomAuthController;
+use App\Http\Controllers\LanguageController;
+use Illuminate\Support\Facades\App;
 
 
 /*
@@ -17,8 +19,12 @@ use App\Http\Controllers\CustomAuthController;
 */
 
 Route::get('/', function () {
+    // Use 'en' as default if no 'lang' query parameter is provided
+    $locale = request()->get('lang', 'en'); 
+    App::setLocale($locale);
     return view('home');
 });
+
 
 Route::get('/student', [StudentController::class, 'index'])->name('students.index');
 Route::get('/student/{student}', [StudentController::class, 'show'])->name('students.show');
@@ -33,3 +39,7 @@ Route::post('/registration', [CustomAuthController::class, 'store'])->name('regi
 Route::get('/login',[CustomAuthController::class, 'index'])->name('login');
 Route::post('/authentication', [CustomAuthController::class, 'authentication'])->name('authentication');
 Route::get('/logout', [CustomAuthController::class, 'logout'])->name('logout');
+
+Route::get('/dashboard', [CustomAuthController::class, 'dashboard'])->name('dashboard');
+
+Route::get('/lang/{locale}', [LanguageController::class, 'index'])->name('lang');

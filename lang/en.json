@@ -1,0 +1,17 @@
+{
+    "text_hello": "Hello",
+    "text_registration" : "Registration",
+    "register_user": "Become a member",
+    "name": "Name",
+    "username": "Username",
+    "password": "Password",
+    "add": "Add",
+    "success_blog": "Blog added successfully",
+    "submit": "Submit",
+    "registration_question": "Already registered?",
+    "login_question": "Not registered yet?",
+    "dashboard": "Dashboard",
+    "search": "search",
+    "students": "Students",
+    "list": "List"
+}

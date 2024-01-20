@@ -1,5 +1,7 @@
 @extends('layouts.layout')
+
 @section('content')
+
 <div class="container-fluid">
     <div class="row justify-content-center my-3">
         <div class="col-12">
@@ -10,12 +12,11 @@
             @endif
         </div>
 
-
     </div>
     <div class="row justify-content-center">
         <div class="col-12 col-md-8 mx-0">
         <div class="mb-3">
-            <a href="{{route('students.create')}}" class="btn btn-primary">Ajouter</a>
+            <a href="{{route('students.create')}}" class="btn btn-primary">@lang('add')</a>
         </div>
             <div class="card">
                 <div class="card-header">
@@ -25,7 +26,7 @@
                                 <input class="form-control" type="text" name="search" aria-label="rechercher" />
                             </div>
                             <div class="col-12 col-sm-5">
-                                <button class="btn btn-outline-success w-100" type="submit">rechercher</button>
+                                <button class="btn btn-outline-success w-100" type="submit">@lang('search')</button>
                             </div>
                         </form>
                     </div>

@@ -15,8 +15,15 @@ class CustomAuthController extends Controller
      */
     public function index()
     {
+
+        if (Auth::check()) {
+            // The user is logged in, redirect them to the dashboard
+            return redirect()->route('dashboard');
+        }
+        // The user is not logged in, show the login page
         return view('auth.login');
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -70,6 +77,16 @@ class CustomAuthController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect(route('login'));
+        return redirect('/');
+    }
+
+    public function dashboard()
+    {
+        $name = 'Guest';
+        if (Auth::check()) :
+            $name = Auth::user()->name;
+        endif;
+
+        return view('forum.dashboard', compact('name'));
     }
 }
