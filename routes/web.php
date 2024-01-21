@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\BlogPostController;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\App;
@@ -33,6 +34,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/student-edit/{student}', [StudentController::class, 'edit'])->name('students.edit');
     Route::put('/student-edit/{student}', [StudentController::class, 'update'])->name('students.edit');
     Route::delete('/student/{student}', [StudentController::class, 'destroy'])->name('students.destroy');
+
+    Route::get('/forum', [BlogPostController::class, 'index'])->name('blog.index');
+    Route::get('/forum/{blogPost}', [BlogPostController::class, 'show'])->name('blog.show');
+    Route::get('/forum-create', [BlogPostController::class, 'create'])->name('blog.create');
+    Route::post('/forum-create', [BlogPostController::class, 'store'])->name('blog.store');
+    Route::get('/forum-edit/{blogPost}', [BlogPostController::class, 'edit'])->name('blog.edit');
+    Route::put('/forum-edit/{blogPost}', [BlogPostController::class, 'update'])->name('blog.edit');
+    Route::delete('/forum/{blogPost}', [BlogPostController::class, 'destroy'])->name('blog.destroy');
+    
     Route::get('/dashboard', [CustomAuthController::class, 'dashboard'])->name('dashboard');
 });
 

@@ -13,6 +13,7 @@
     @php $locale = session()->has('locale') ? session()->get('locale') : 'en'; @endphp
     @include('layouts.partials.navi')
     <main>
+        <p>@lang('hello') {{Auth::user() ? Auth::user()->name : "You!"}} </p>
         @yield('content')
     </main>
 </body>

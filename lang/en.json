@@ -15,5 +15,11 @@
     "students": "Students",
     "list": "List",
     "no_student_registered": "No student registered",
-    "no_post_written": "No post written yet!"
+    "no_post_written": "No post written yet!",
+    "title_create_article": "Create an article",
+    "author": "Author",
+    "edit_article" : "Modify article",
+    "delete": "Delete",
+    "modify": "Modify",
+    "back": "Back"
 }

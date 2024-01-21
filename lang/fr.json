@@ -14,5 +14,12 @@
     "search": "rechercher",
     "students": "Étudiant.e.s",
     "list": "Liste",
-    "no_student_registered": "Aucun étudiant n'est enregistré"
+    "no_student_registered": "Aucun étudiant n'est enregistré",
+    "no_post_written": "Aucun article n'a été écrit encore!",
+    "title_create_article": "Créer un article",
+    "author": "Auteur",
+    "edit_article": "Modifier l'article",
+    "delete": "Supprimer",
+    "modify": "Modifier",
+    "back": "Retour"
 }

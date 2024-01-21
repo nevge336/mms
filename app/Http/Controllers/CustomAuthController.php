@@ -20,7 +20,7 @@ class CustomAuthController extends Controller
 
         if (Auth::check()) {
             // The user is logged in, redirect them to the dashboard
-            return redirect()->route(('students.index'));
+            return redirect()->route(('blog.index'));
         }
         // The user is not logged in, show the login page
         return view('auth.login');
@@ -81,7 +81,7 @@ class CustomAuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->intended(route('students.index'));
+        return redirect()->intended(route('blog.index'));
     }
 
     public function logout()
