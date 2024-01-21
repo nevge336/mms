@@ -21,5 +21,17 @@
     "edit_article" : "Modify article",
     "delete": "Delete",
     "modify": "Modify",
-    "back": "Back"
+    "back": "Back",
+    "profile": "Profile",
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "city": "City",
+    "birthday": "Birthday",
+    "posts": "Posts",
+    "published": "Published",
+    "age": "Age",
+    "by": "By",
+    "my_profile": "My profile",
+    "student_list": "Student list"
 }

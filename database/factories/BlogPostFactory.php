@@ -4,6 +4,7 @@ namespace Database\Factories;
 use App\Models\BlogPost;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\BlogPost>
@@ -20,7 +21,7 @@ class BlogPostFactory extends Factory
             'title_fr' => $this->faker->words(3, true),
             'content_fr' => $this->faker->text(2000),
             'date' => $this->faker->date(),
-            'user_id' => User::factory(),
+            'user_id' => DB::table('users')->inRandomOrder()->first()->id,
         ];
     }
 }

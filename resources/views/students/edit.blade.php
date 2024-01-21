@@ -13,7 +13,7 @@
                     <div class="card-body">
                         <div class="control-group col-12 mb-4">
                             <label for="name"><strong>Nom</strong></label>
-                            <input type="text" id="name" name="name" class="form-control" value="{{ $student->name }}">
+                            <input type="text" id="name" name="name" class="form-control" value="{{ $student->user->name }}">
                         </div>
 
                         <div class="control-group col-12 mb-4">
@@ -28,7 +28,7 @@
 
                         <div class="control-group col-12 mb-4">
                             <label for="email"><strong>Courriel</strong></label>
-                            <input type="email" id="email" name="email" class="form-control" value="{{ $student->email }}">
+                            <input type="email" id="email" name="email" class="form-control" value="{{ $student->user->email }}">
                         </div>
 
                         <div class="control-group col-12 mb-4">

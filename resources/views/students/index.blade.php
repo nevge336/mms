@@ -11,13 +11,10 @@
             </div>
             @endif
         </div>
-
     </div>
     <div class="row justify-content-center">
-        <div class="col-12 col-md-8 mx-0">
-        <div class="mb-3">
-            <a href="{{route('students.create')}}" class="btn btn-primary">@lang('add')</a>
-        </div>
+        <div class="col-12">
+            <h1 class="display-6 font-bruno">@lang('student_list')</h1>
             <div class="card">
                 <div class="card-header">
                     <div class="col-12">
@@ -47,9 +44,10 @@
                         </div>
                         @endforelse
                     </div>
-                </div>            {{ $students->appends(['search' => request()->get('search')])->links() }}
+                </div>
+                {{ $students->appends(['search' => request()->get('search')])->links() }}
+            </div>
         </div>
     </div>
-</div>
 
-@endsection
+    @endsection

@@ -17,9 +17,21 @@
     "no_student_registered": "Aucun étudiant n'est enregistré",
     "no_post_written": "Aucun article n'a été écrit encore!",
     "title_create_article": "Créer un article",
-    "author": "Auteur",
+    "author": "Auteur.rice",
     "edit_article": "Modifier l'article",
     "delete": "Supprimer",
     "modify": "Modifier",
-    "back": "Retour"
+    "back": "Retour",
+    "profile": "Profil",
+    "phone": "Téléphone",
+    "email": "Courriel",
+    "address": "Adresse",
+    "city": "Ville",
+    "birthday": "Anniversaire",
+    "posts": "Articles",
+    "published": "Publié",
+    "age": "Âge",
+    "by": "Par",
+    "my_profile": "Mon profil",
+    "student_list": "Liste des étudiant.e.s"
 }

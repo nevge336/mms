@@ -15,11 +15,18 @@ class BlogPostController extends Controller
      */
     public function index()
     {
-        // if(Auth::check()){
-        $blogs = BlogPost::all();
+        $locale = App::getLocale();
+
+        $blogs = BlogPost::orderBy('date', 'desc')->paginate(10);
+
+        if ($locale == 'fr') {
+            foreach ($blogs as $blogPost) {
+                $blogPost->title = $blogPost->title_fr;
+                $blogPost->content = $blogPost->content_fr;
+            }
+        }
+
         return view('blog.index', compact('blogs'));
-        // }
-        // return redirect(route('login'));
     }
 
     /**
@@ -37,9 +44,9 @@ class BlogPostController extends Controller
     {
         $request->validate([
             'title' => 'required|min:3|max:45',
-            'content' => 'required|min:3|max:500',
+            'content' => 'required|min:3|max:5000',
             'title_fr' => 'required|min:3|max:45',
-            'content_fr' => 'required|min:3|max:500',
+            'content_fr' => 'required|min:3|max:5000',
         ]);
 
         // $newBlog = new BlogPost;
@@ -92,14 +99,22 @@ class BlogPostController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required|min:3|max:45',
-            'content' => 'required|min:3|max:500',
+            'content' => 'required|min:3|max:5000',
             'title_fr' => 'required|min:3|max:45',
-            'content_fr' => 'required|min:3|max:500',
+            'content_fr' => 'required|min:3|max:5000',
         ]);
 
         $blogPost->update($validatedData);
         $blogPost->save();
 
         return redirect(route('blog.show', $blogPost->id))->withSuccess('Article modifié avec succès');
+    }
+
+    public function destroy(BlogPost $blogPost)
+    {
+        $studentId = $blogPost->user_id; 
+        $blogPost->delete();
+
+        return redirect(route('students.show', $studentId))->withSuccess('Article supprimé avec succès');
     }
 }

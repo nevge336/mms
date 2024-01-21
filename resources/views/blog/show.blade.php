@@ -1,37 +1,38 @@
 @extends('layouts.layout')
 @section('content')
 
-<div class="row bg-light p-3 rounded">
-    <div class="col-12 pt-2">
+<div class="row bg-light rounded justify-content-center">
+    <div class="col-12 col-md-10 pt-2">
         <a href="{{ route('blog.index')}}" class="btn btn-primary mb-3">@lang('back')</a>
         <div class="card">
-            <div class="card-body">
+            <div class="card-body p-md-5">
                 <h4 class="card-title display-6 mt-2">
-                    {{ $blogPost->title }}
+                    {{ ucwords($blogPost->title) }}
                 </h4>
                 <hr>
                 <p class="card-text">
                     {!! $blogPost->content !!}
                 </p>
                 <p class="text-muted">
-                    <strong>@lang('author'):</strong> {{ $blogPost->user->name }}<br>
-                    <strong>Date:</strong> {{ $blogPost->date }}<br>
+                    <strong>@lang('author'):</strong>
+                    <a href="{{ route('students.show', $blogPost->user->student->id) }}">
+                        {{ $blogPost->user->name }}
+                    </a><br>
+                    <strong>@lang('published'):</strong> {{ $blogPost->date }}<br>
                 </p>
-            </div>
-        </div>
-        @if(Auth::user() && Auth::user()->id == $blogPost->user_id)
-        <div class="card mt-3">
-            <div class="card-body">
-                <div class="d-flex justify-content-between">
+                @if(Auth::user() && Auth::user()->id == $blogPost->user_id)
+                <div>
                     <a href="{{ route('blog.edit', $blogPost->id)}}" class="btn btn-primary">@lang('modify')</a>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
                         @lang('delete')
                     </button>
                 </div>
+                @endif
             </div>
+
         </div>
-        @endif
+
     </div>
 </div>
 

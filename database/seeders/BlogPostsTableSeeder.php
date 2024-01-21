@@ -12,6 +12,6 @@ class BlogPostsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\BlogPost::factory()->count(50)->create();
+        \App\Models\BlogPost::factory()->count(150)->create();
     }
 }

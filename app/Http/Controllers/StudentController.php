@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Student;
 use App\Models\City;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class StudentController extends Controller
 {
@@ -31,14 +32,7 @@ class StudentController extends Controller
 
         return view('students.index', compact('students'));
     }
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        $cities = City::all();
-        return view('students.create', compact('cities'));
-    }
+
 
     public function store(Request $request)
     {
@@ -58,9 +52,17 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
+        $locale = App::getLocale();
+
+        if ($locale == 'fr') {
+            foreach ($student->user->blogPosts as $blogPost) {
+                $blogPost->title = $blogPost->title_fr;
+                $blogPost->content = $blogPost->content_fr;
+            }
+        }
+
         return view('students.show', compact('student'));
     }
-
     /**
      * Show the form for editing the specified resource.
      */
@@ -75,11 +77,16 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {
-        $student->update([
+        // Update the User model
+        $student->user->update([
             'name' => $request->name,
+            'email' => $request->email,
+        ]);
+
+        // Update the Student model
+        $student->update([
             'address' => $request->address,
             'phone' => $request->phone,
-            'email' => $request->email,
             'birthday' => $request->birthday,
             'city_id' => $request->city_id
         ]);

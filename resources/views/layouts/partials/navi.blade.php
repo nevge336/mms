@@ -31,9 +31,11 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{route ('students.index')}}">@lang('list')</a></li>
-                            <li><a class="dropdown-item" href="{{route ('students.create')}}">@lang('add')</a></li>
                         </ul>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('students.show', Auth::user()->student->id) }}">@lang('my_profile')</a>
+                    </li>                    
                     <li class="nav-item">
                         <a class="nav-link" href="{{route ('logout')}}">Logout</a>
                     </li>
