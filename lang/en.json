@@ -33,5 +33,14 @@
     "age": "Age",
     "by": "By",
     "my_profile": "My profile",
-    "student_list": "Student list"
+    "student_list": "Student list",
+    "documents_sharing": "Documents sharing",
+    "no_document_shared": "No document shared yet!",
+    "welcome": "Welcome",
+    "upload_document": "Upload document",
+    "documents": "Documents",
+    "view_document": "View Document",
+    "title_english": "Title in English",
+    "title_french": "Title in French",
+    "upload": "Upload"
 }

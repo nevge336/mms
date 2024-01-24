@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\BlogPostController;
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\App;
@@ -24,7 +25,7 @@ Route::get('/', function () {
     $locale = request()->get('lang', 'en');
     App::setLocale($locale);
     return view('home');
-});
+})->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/student', [StudentController::class, 'index'])->name('students.index');
@@ -40,6 +41,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/forum-edit/{blogPost}', [BlogPostController::class, 'edit'])->name('blog.edit');
     Route::put('/forum-edit/{blogPost}', [BlogPostController::class, 'update'])->name('blog.edit');
     Route::delete('/forum/{blogPost}', [BlogPostController::class, 'destroy'])->name('blog.destroy');
+
+    Route::get('/documents', [DocumentController::class, 'index'])->name('documents.index');
+    Route::get('/documents/create', [DocumentController::class, 'create'])->name('documents.create');
+    Route::post('/documents', [DocumentController::class, 'store'])->name('documents.store');
+    Route::delete('/documents/{document}', [DocumentController::class, 'destroy'])->name('documents.destroy');
     
     Route::get('/dashboard', [CustomAuthController::class, 'dashboard'])->name('dashboard');
 });

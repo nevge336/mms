@@ -33,6 +33,16 @@
                             <li><a class="dropdown-item" href="{{route ('students.index')}}">@lang('list')</a></li>
                         </ul>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            @lang('documents_sharing')
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{route ('documents.index')}}">@lang('list')</a></li>
+                            <li><a class="dropdown-item" href="{{route ('documents.create')}}">@lang('add')</a></li>
+
+                        </ul>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('students.show', Auth::user()->student->id) }}">@lang('my_profile')</a>
                     </li>                    
@@ -40,10 +50,10 @@
                         <a class="nav-link" href="{{route ('logout')}}">Logout</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route ('lang', 'fr')}}">FR</a>
+                        <a class="nav-link @if($locale == 'fr') bg-warning @endif" href="{{route ('lang', 'fr')}}">FR</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route ('lang', 'en')}}">EN</a>
+                        <a class="nav-link @if($locale == 'en') bg-warning @endif" href="{{route ('lang', 'en')}}">EN</a>
                     </li>
                 </ul>
             </div>

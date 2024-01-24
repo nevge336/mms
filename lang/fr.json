@@ -33,5 +33,14 @@
     "age": "Âge",
     "by": "Par",
     "my_profile": "Mon profil",
-    "student_list": "Liste des étudiant.e.s"
+    "student_list": "Liste des étudiant.e.s",
+    "documents_sharing": "Partage de documents",
+    "no_document_shared": "Aucun document partagé encore!",
+    "welcome": "Bienvenue",
+    "upload_document": "Téléverser un document",
+    "documents": "Documents",
+    "view_document": "Voir Document",
+    "title_english": "Titre en anglais",
+    "title_french": "Titre en français",
+    "upload": "Téléverser"
 }

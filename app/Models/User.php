@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Student::class);
     }
+
+    public function documents()
+    {
+        return $this->hasMany('App\Models\BlogPost');
+    }
 }
