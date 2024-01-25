@@ -19,7 +19,7 @@
                         <div class="card mb-4 shadow-sm">
                             <div class="card-body">
                                 <div>
-                                    <h2>{{ $document->title }}</h2>
+                                    <h2>{{ $document->doc_title }}</h2>
                                     <a href="{{ route('students.show', $document->user->student->id) }}" class="text-decoration-none">{{ $document->user->name }}</a>
                                     <p>Type: {{ pathinfo($document->doc_url, PATHINFO_EXTENSION) }}</p>
                                     <p>Date: {{ $document->created_at->format('d-m-Y') }}</p>

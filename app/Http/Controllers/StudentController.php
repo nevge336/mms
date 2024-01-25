@@ -55,13 +55,14 @@ class StudentController extends Controller
         $locale = App::getLocale();
 
         if ($locale == 'fr') {
+            foreach ($student->user->documents as $document) {
+                $document->doc_title = $document->doc_title_fr;
+            }
             foreach ($student->user->blogPosts as $blogPost) {
                 $blogPost->title = $blogPost->title_fr;
                 $blogPost->content = $blogPost->content_fr;
             }
-            foreach ($student->user->documents as $document) {
-                $document->title = $document->title_fr;
-            }
+
         }
 
         return view('students.show', compact('student'));

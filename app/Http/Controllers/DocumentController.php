@@ -16,8 +16,7 @@ class DocumentController extends Controller
         $documents = Document::latest()->paginate(8);
         if ($locale == 'fr') {
             foreach ($documents as $document) {
-                $document->title = $document->title_fr;
-                $document->content = $document->content_fr;
+                $document->doc_title = $document->doc_title_fr;
             }
         }
 
@@ -32,14 +31,15 @@ class DocumentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required',
-            'title_fr' => 'required',
+            'doc_title' => 'required',
+            'doc_title_fr' => 'required',
+            'document' => 'required|mimes:pdf,doc,docx,txt,jpg,png|max:2048'
         ]);
 
         $documentPath = $request->file('document')->store('documents', 'public');
         Document::create([
-            'title' => $request->title,
-            'title_fr' => $request->title_fr,
+            'doc_title' => $request->doc_title,
+            'doc_title_fr' => $request->doc_title_fr,
             'doc_url' => $documentPath,
             'user_id' => Auth::id(),
         ]);

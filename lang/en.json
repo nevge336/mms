@@ -42,5 +42,6 @@
     "view_document": "View Document",
     "title_english": "Title in English",
     "title_french": "Title in French",
-    "upload": "Upload"
+    "upload": "Upload",
+    "document_upload": "Document upload"
 }

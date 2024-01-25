@@ -40,7 +40,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+        // 'password' => 'hashed',
     ];
 
     public function blogPosts()
@@ -55,6 +55,6 @@ class User extends Authenticatable
 
     public function documents()
     {
-        return $this->hasMany('App\Models\BlogPost');
+        return $this->hasMany('App\Models\Document');
     }
 }

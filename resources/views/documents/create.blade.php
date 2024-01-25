@@ -7,16 +7,31 @@
             @csrf
             <div class="card-body ">
                 <div class="control-group col-12 ">
-                    <label for="title">@lang('title_english')</label>
-                    <input type="text" id="title" name="title" class="form-control" required>
+                    <label for="doc_title">@lang('title_english')</label>
+                    <input type="text" id="doc_title" name="doc_title" class="form-control">
+                    @if($errors->has('doc_title'))
+                    <div class="alert alert-warning">
+                        {{ $errors->first('doc_title') }}
+                    </div>
+                    @endif
                 </div>
                 <div class="control-group col-12">
-                    <label for="title_fr">@lang('title_french')</label>
-                    <input type="text" id="title_fr" name="title_fr" class="form-control" required>
+                    <label for="doc_title_fr">@lang('title_french')</label>
+                    <input type="text" id="doc_title_fr" name="doc_title_fr" class="form-control">
+                    @if($errors->has('doc_title_fr'))
+                    <div class="alert alert-warning">
+                        {{ $errors->first('doc_title_fr') }}
+                    </div>
+                    @endif
                 </div>
                 <div class="control-group col-12">
-                    <label for="document">@lang('document')</label>
-                    <input type="file" id="document" name="document" class="form-control" required>
+                    <label for="document">@lang('document_upload')</label>
+                    <input type="file" id="document" name="document" class="form-control">
+                    @if($errors->has('document'))
+                    <div class="alert alert-warning">
+                        {{ $errors->first('document') }}
+                    </div>
+                    @endif
                 </div>
             </div>
             <div class="card-footer text-center">

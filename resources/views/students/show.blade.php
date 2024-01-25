@@ -20,62 +20,81 @@
                     <div class="row">
                         <!-- Address Column -->
                         <div class="col-12 col-md-4">
-                            <h4 class="my-4">@lang('profile')</h4>
-
-                            <p><strong>@lang('address'):</strong> {{ $student->address }}</p>
-                            <p><strong>@lang('phone'):</strong> {{ $student->phone }}</p>
-                            <p><strong>@lang('email'):</strong> {{ $student->user->email }}</p>
-                            <p><strong>@lang('age'):</strong> {{ \Carbon\Carbon::parse($student->birthday)->age }}</p>
-                            <p><strong>@lang('city'):</strong> {{ $student->city ? $student->city->name : 'N/A' }}</p>
-                            @if(Auth::user() && Auth::user()->id == $student->user_id)
-                            <div class="d-flex mt-5">
-                                <a href="{{ route('students.edit', $student->id)}}" class="btn btn-primary me-2">@lang('modify')</a>
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                                    @lang('delete')
-                                </button>
+                            <div class="card mb-4 shadow-sm">
+                                <div class="card-body">
+                                    <h4 class="my-4">@lang('profile')</h4>
+                                    <p><strong>@lang('address'):</strong> {{ $student->address }}</p>
+                                    <p><strong>@lang('phone'):</strong> {{ $student->phone }}</p>
+                                    <p><strong>@lang('email'):</strong> {{ $student->user->email }}</p>
+                                    <p><strong>@lang('age'):</strong> {{ \Carbon\Carbon::parse($student->birthday)->age }}</p>
+                                    <p><strong>@lang('city'):</strong> {{ $student->city ? $student->city->name : 'N/A' }}</p>
+                                    @if(Auth::user() && Auth::user()->id == $student->user_id)
+                                    <hr>
+                                    <div class="d-flex mt-5">
+                                        <a href="{{ route('students.edit', $student->id)}}" class="btn btn-primary me-2">@lang('modify')</a>
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                            @lang('delete')
+                                        </button>
+                                    </div>
+                                    @endif
+                                </div>
                             </div>
-                            @endif
                         </div>
                         <!-- Blog Titles Column -->
                         <div class="col-12 col-md-4">
-                            <h4 class="my-4">@lang('posts')</h4>
-                            <ul>
-                                @forelse($student->user->blogPosts as $blog)
-                                <li>
-                                    <a href="{{ route('blog.show', $blog->id)}}">{{ ucwords($blog->title) }}</a>
-                                    <span class="text-muted">{{ $blog->date }}</span>
-                                </li>
-                                @empty
-                                <li class="text-danger">@lang('no_post_written')</li>
-                                @endforelse
-                            </ul>
-                            @if(Auth::user() && Auth::user()->id == $student->user_id)
-                            <div class="d-flex mt-5">
-                                <a href="{{route ('blog.create')}}" class="btn btn-primary me-2">@lang('add')</a>
+                            <div class="card mb-4 shadow-sm">
+                                <div class="card-body">
+
+                                    <h4 class="my-4">@lang('posts')</h4>
+                                    <ul>
+                                        @forelse($student->user->blogPosts as $blog)
+                                        <li>
+                                            <a href="{{ route('blog.show', $blog->id)}}">{{ ucwords($blog->title) }}</a>
+                                            <span class="text-muted">{{ $blog->date }}</span>
+                                        </li>
+                                        @empty
+                                        <li class="text-danger">@lang('no_post_written')</li>
+                                        @endforelse
+                                    </ul>
+                                    @if(Auth::user() && Auth::user()->id == $student->user_id)
+                                    <hr>
+                                    <div class="d-flex mt-5">
+                                        <a href="{{route ('blog.create')}}" class="btn btn-primary me-2">@lang('add')</a>
+                                    </div>
+                                    @endif
+                                </div>
                             </div>
-                            @endif
                         </div>
                         <!-- Documents sharing -->
                         <div class="col-12 col-md-4">
-                            <h4 class="my-4">@lang('documents')</h4>
-                            <ul>
-                                @forelse($student->user->documents as $document)
-                                <li>
-                                    <a href="{{ asset('storage/'. $document->doc_url) }}" target="_blank">{{ $document->title }}</a>
-    
-                                    <span class="text-muted">{{ $document->created_at }}</span>
-                                </li>
-                                @if(Auth::user() && Auth::user()->id == $document->user->id)
-                                    <form method="post" action="{{ route('documents.destroy', $document->id) }}" style="display: inline;">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" class="btn btn-danger btn-sm">x</button>
-                                    </form>
-                                    @endif
-                                @empty
-                                <li class="text-danger">@lang('no_documents')</li>
-                                @endforelse                            </ul>
+                            <div class="card mb-4 shadow-sm">
+                                <div class="card-body">
+
+                                    <h4 class="my-4">@lang('documents')</h4>
+                                    <ul>
+                                        @forelse($student->user->documents as $document)
+                                        <li>
+                                            <a href="{{ asset('storage/'. $document->doc_url) }}" target="_blank">{{ $document->doc_title }}</a>
+                                            <span class="text-muted">{{ $document->created_at }}</span>
+                                        </li>
+                                        @if(Auth::user() && Auth::user()->id == $document->user->id)
+                                        <form method="post" action="{{ route('documents.destroy', $document->id) }}" style="display: inline;">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-danger btn-sm">x</button>
+                                        </form>
+                                        @endif
+                                        @empty
+                                        <li class="text-danger">@lang('no_document_shared')</li>
+                                        @endforelse
+                                    </ul>
+                                    @if(Auth::user() && $student->user->documents->last() && Auth::user()->id == $student->user->documents->last()->user->id)
+                                        <hr>
+                                        <a class="btn btn-primary me-2" href="{{route ('documents.create')}}">@lang('add')</a>
+                                    @endif                                    
+                                </div>
+                            </div>
 
                         </div>
                     </div>

@@ -7,6 +7,7 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Artisan;
 
 
 /*
@@ -47,11 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/documents', [DocumentController::class, 'store'])->name('documents.store');
     Route::delete('/documents/{document}', [DocumentController::class, 'destroy'])->name('documents.destroy');
     
-    Route::get('/dashboard', [CustomAuthController::class, 'dashboard'])->name('dashboard');
 });
-
-
-
 
 
 Route::get('/registration', [CustomAuthController::class, 'create'])->name('registration');
